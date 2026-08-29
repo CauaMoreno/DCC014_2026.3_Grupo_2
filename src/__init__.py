@@ -1,0 +1,3 @@
+from .buscas.problema_baldes import ProblemaBaldes
+from .buscas.backtracking.estado_backtracking import EstadoBacktracking
+from .buscas.backtracking.busca_backtracking import BuscaBacktracking
