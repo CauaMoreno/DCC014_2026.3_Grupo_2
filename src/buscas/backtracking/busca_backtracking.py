@@ -8,9 +8,6 @@ class BuscaBacktracking:
         self.estados = [EstadoBacktracking(pai=None, baldes=self.baldes)]
         self.visitados = {self.baldes.tupla()}
 
-    def print(self):
-        self.estados[self.nivel].baldes.print()
-
     def busca_completa(self) -> bool:
         while not self.estados[self.nivel].baldes.is_solucionado():
             estado_atual = self.estados[self.nivel]
@@ -40,4 +37,4 @@ class BuscaBacktracking:
 
         for i, estado in enumerate(caminho):
             print(f'--- Passo {i} ---')
-            estado.baldes.print()
+            estado.baldes.imprimir_baldes()

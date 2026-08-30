@@ -31,7 +31,7 @@ class ProblemaBaldes:
     def tupla(self) -> tuple[int, int]:
         return (self.baldes[0], self.baldes[1])
 
-    def print(self):
+    def imprimir_baldes(self):
         print(f'BALDE MAIOR: {self.baldes[0]}')
         print(f'BALDE MENOR: {self.baldes[1]}')
 
