@@ -4,12 +4,12 @@ from ..problema_baldes import ProblemaBaldes
 class EstadoBacktracking:
 
     ORDEM_EXECUCAO = [
-        "enche_balde_menor",
-        "enche_balde_maior",
-        "esvazia_balde_menor",
-        "esvazia_balde_maior",
-        "balde_menor_to_balde_maior",
-        "balde_maior_to_balde_menor",
+        "enche_b3",
+        "enche_b5",
+        "esvazia_b3",
+        "esvazia_b5",
+        "b3_to_b5",
+        "b5_to_b3",
     ]
     
     def __init__(self, pai: Optional["EstadoBacktracking"] = None, baldes: ProblemaBaldes = None):

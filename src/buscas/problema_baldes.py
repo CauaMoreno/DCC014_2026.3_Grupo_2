@@ -6,19 +6,19 @@ class ProblemaBaldes:
     def __init__(self, baldes: Optional[list[int]] = None):
         self.baldes: list[int] = baldes if baldes is not None else [5, 0]
 
-    def _get_balde_maior(self) -> int:
+    def _get_b5(self) -> int:
         return self.baldes[0]
 
-    def _get_balde_menor(self) -> int:
+    def _get_b3(self) -> int:
         return self.baldes[1]
 
-    def _set_balde_maior(self, valor: int) -> bool:
+    def _set_b5(self, valor: int) -> bool:
         if valor > 5 or valor < 0:
             return False
         self.baldes[0] = valor
         return True
 
-    def _set_balde_menor(self, valor: int) -> bool:
+    def _set_b3(self, valor: int) -> bool:
         if valor > 3 or valor < 0:
             return False
         self.baldes[1] = valor
@@ -36,65 +36,64 @@ class ProblemaBaldes:
         print(f'BALDE MENOR: {self.baldes[1]}')
 
     def is_solucionado(self) -> bool:
-        return (self._get_balde_menor() + self._get_balde_maior()) == 4
+        return (self._get_b3() + self._get_b5()) == 4
 
 # REGRAS DE TRANSIÇÃO
-    def enche_balde_maior(self) -> bool:
-        valor = self._get_balde_maior()
+    def enche_b5(self):
+        valor = self._get_b5()
         if valor >= 5:
-            return False
-        self._set_balde_maior(5)
-        return True
+            raise ValueError("O balde maior já está cheio.")
+        self._set_b5(5)
 
-    def enche_balde_menor(self) -> bool:
-        valor = self._get_balde_menor()
+    def enche_b3(self) -> bool:
+        valor = self._get_b3()
         if valor >= 3:
             return False
-        self._set_balde_menor(3)
+        self._set_b3(3)
         return True
 
-    def esvazia_balde_maior(self) -> bool:
-        valor = self._get_balde_maior()
+    def esvazia_b5(self) -> bool:
+        valor = self._get_b5()
         if valor < 1:
             return False
-        self._set_balde_maior(0)
+        self._set_b5(0)
         return True
 
-    def esvazia_balde_menor(self) -> bool:
-        valor = self._get_balde_menor()
+    def esvazia_b3(self) -> bool:
+        valor = self._get_b3()
         if valor < 1:
             return False
-        self._set_balde_menor(0)
+        self._set_b3(0)
         return True
 
-    def balde_maior_to_balde_menor(self) -> bool:
-        valor_maior = self._get_balde_maior()
-        valor_menor = self._get_balde_menor()
+    def b5_to_b3(self) -> bool:
+        valor_maior = self._get_b5()
+        valor_menor = self._get_b3()
 
         if valor_maior == 0 or valor_menor >= 3:
             return False
 
         folga_menor = 3 - valor_menor
         if valor_maior <= folga_menor:
-            self._set_balde_menor(valor_menor + valor_maior)
-            self._set_balde_maior(0)
+            self._set_b3(valor_menor + valor_maior)
+            self._set_b5(0)
         else:
-            self._set_balde_menor(3)
-            self._set_balde_maior(valor_maior - folga_menor)
+            self._set_b3(3)
+            self._set_b5(valor_maior - folga_menor)
         return True
 
-    def balde_menor_to_balde_maior(self) -> bool:
-        valor_maior = self._get_balde_maior()
-        valor_menor = self._get_balde_menor()
+    def b3_to_b5(self) -> bool:
+        valor_maior = self._get_b5()
+        valor_menor = self._get_b3()
 
         if valor_menor == 0 or valor_maior >= 5:
             return False
 
         folga_maior = 5 - valor_maior
         if valor_menor <= folga_maior:
-            self._set_balde_maior(valor_menor + valor_maior)
-            self._set_balde_menor(0)
+            self._set_b5(valor_menor + valor_maior)
+            self._set_b3(0)
         else:
-            self._set_balde_maior(5)
-            self._set_balde_menor(valor_menor - folga_maior)
+            self._set_b5(5)
+            self._set_b3(valor_menor - folga_maior)
         return True
