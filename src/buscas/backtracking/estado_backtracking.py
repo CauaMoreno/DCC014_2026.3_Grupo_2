@@ -12,9 +12,10 @@ class EstadoBacktracking:
         "b5_to_b3",
     ]
     
-    def __init__(self, pai: Optional["EstadoBacktracking"] = None, baldes: ProblemaBaldes = None):
+    def __init__(self, pai: Optional["EstadoBacktracking"] = None, baldes: ProblemaBaldes = None, regra_geradora: Optional[str] = None):
         self.baldes = baldes if baldes else ProblemaBaldes()
         self.pai = pai
+        self.regra_geradora = regra_geradora
         self.proxima_regra = 0
         self.impasse = False
       
@@ -26,7 +27,7 @@ class EstadoBacktracking:
             candidato_baldes = self.baldes.clonar()
             try:
                 getattr(candidato_baldes, nome_regra)()
-                return EstadoBacktracking(pai=self, baldes=candidato_baldes)
+                return EstadoBacktracking(pai=self, baldes=candidato_baldes, regra_geradora=nome_regra)
             except Exception:
                 print(f"Regra {nome_regra} não pôde ser aplicada.")
         self.impasse = True

@@ -38,3 +38,4 @@ class BuscaBacktracking:
         for i, estado in enumerate(caminho):
             print(f'--- Passo {i} ---')
             estado.baldes.imprimir_baldes()
+            print(f'Regra aplicada: {estado.regra_geradora}')
