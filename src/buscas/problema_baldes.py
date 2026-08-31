@@ -12,17 +12,13 @@ class ProblemaBaldes:
     def _get_b3(self) -> int:
         return self.baldes[1]
 
-    def _set_b5(self, valor: int) -> bool:
-        if valor > 5 or valor < 0:
-            return False
-        self.baldes[0] = valor
-        return True
+    def _set_b5(self, valor: int):
+        if valor <= 5 or valor > 0:
+            self.baldes[0] = valor
 
-    def _set_b3(self, valor: int) -> bool:
-        if valor > 3 or valor < 0:
-            return False
-        self.baldes[1] = valor
-        return True
+    def _set_b3(self, valor: int):
+        if valor <= 3 or valor > 0:
+            self.baldes[1] = valor
 
 # OPERAÇÕES AUXILIARES
     def clonar(self) -> "ProblemaBaldes":
@@ -42,36 +38,34 @@ class ProblemaBaldes:
     def enche_b5(self):
         valor = self._get_b5()
         if valor >= 5:
-            raise ValueError("O balde maior já está cheio.")
+            raise Exception("O balde maior já está cheio.")
         self._set_b5(5)
 
-    def enche_b3(self) -> bool:
+    def enche_b3(self):
         valor = self._get_b3()
         if valor >= 3:
-            return False
+            raise Exception("O balde menor já está cheio.")
         self._set_b3(3)
-        return True
 
     def esvazia_b5(self) -> bool:
         valor = self._get_b5()
         if valor < 1:
-            return False
+            raise Exception("O balde maior já está vazio.")
         self._set_b5(0)
         return True
 
-    def esvazia_b3(self) -> bool:
+    def esvazia_b3(self):
         valor = self._get_b3()
         if valor < 1:
-            return False
+            raise Exception("O balde menor já está vazio.")
         self._set_b3(0)
-        return True
 
-    def b5_to_b3(self) -> bool:
+    def b5_to_b3(self):
         valor_maior = self._get_b5()
         valor_menor = self._get_b3()
 
         if valor_maior == 0 or valor_menor >= 3:
-            return False
+            raise Exception("Não é possível transferir água do balde maior para o balde menor.")
 
         folga_menor = 3 - valor_menor
         if valor_maior <= folga_menor:
@@ -80,14 +74,13 @@ class ProblemaBaldes:
         else:
             self._set_b3(3)
             self._set_b5(valor_maior - folga_menor)
-        return True
 
     def b3_to_b5(self) -> bool:
         valor_maior = self._get_b5()
         valor_menor = self._get_b3()
 
         if valor_menor == 0 or valor_maior >= 5:
-            return False
+            raise Exception("Não é possível transferir água do balde menor para o balde maior.")
 
         folga_maior = 5 - valor_maior
         if valor_menor <= folga_maior:
@@ -96,4 +89,3 @@ class ProblemaBaldes:
         else:
             self._set_b5(5)
             self._set_b3(valor_menor - folga_maior)
-        return True

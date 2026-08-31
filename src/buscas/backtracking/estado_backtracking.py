@@ -24,8 +24,10 @@ class EstadoBacktracking:
             self.proxima_regra += 1
             
             candidato_baldes = self.baldes.clonar()
-            if getattr(candidato_baldes, nome_regra)():
+            try:
+                getattr(candidato_baldes, nome_regra)()
                 return EstadoBacktracking(pai=self, baldes=candidato_baldes)
-            
+            except Exception:
+                print(f"Regra {nome_regra} não pôde ser aplicada.")
         self.impasse = True
         return None
