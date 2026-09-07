@@ -13,7 +13,8 @@ class EstadoBacktracking:
         "b5_to_b3",
     ]
     
-    def __init__(self, pai: Optional["EstadoBacktracking"] = None, baldes: ProblemaBaldes = None, regra_geradora: Optional[str] = None, ordem_reversa: bool = False, logs: bool = False):
+    def __init__(self, pai: Optional["EstadoBacktracking"] = None, baldes: ProblemaBaldes = None,
+                 regra_geradora: Optional[str] = None, ordem_reversa: bool = False, logs: bool = False):
         self.baldes = baldes if baldes else ProblemaBaldes()
         self.pai = pai
         self.regra_geradora = regra_geradora
@@ -22,7 +23,7 @@ class EstadoBacktracking:
         self.ordem_reversa = ordem_reversa
         self.logs = logs
 
-    def _calcular_possiveis(self):
+    def _calcular_possiveis(self) -> list[str]:
         possiveis = []
         for nome_regra in self.REGRAS:
             candidato_baldes = self.baldes.clonar()

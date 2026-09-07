@@ -47,7 +47,7 @@ class ProblemaBaldes:
             raise Exception("O balde menor já está cheio.")
         self._set_b3(3)
 
-    def esvazia_b5(self) -> bool:
+    def esvazia_b5(self):
         valor = self._get_b5()
         if valor < 1:
             raise Exception("O balde maior já está vazio.")
@@ -75,7 +75,7 @@ class ProblemaBaldes:
             self._set_b3(3)
             self._set_b5(valor_maior - folga_menor)
 
-    def b3_to_b5(self) -> bool:
+    def b3_to_b5(self):
         valor_maior = self._get_b5()
         valor_menor = self._get_b3()
 
