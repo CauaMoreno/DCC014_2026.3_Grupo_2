@@ -17,6 +17,16 @@ class BuscaBacktracking:
             if self.logs:
                 print(f'---------- NÍVEL {self.nivel} ---------')
  
+            if self.nivel > 10:
+                if self.logs:
+                    print(Fore.RED + f'Nível muito profundo. Voltando para o nível {self.nivel - 1}..' + Fore.RESET)
+
+                self.estados.pop()
+                self.nivel -= 1
+                self.impasses += 1
+
+                continue
+
             estado_atual = self.estados[self.nivel]
             if self.logs:
                 print(Fore.LIGHTBLACK_EX + f'Baldes: {estado_atual.baldes.tupla()}' + Fore.RESET)
