@@ -1,1 +1,2 @@
 from .backtracking.busca_backtracking import BuscaBacktracking
+from .largura.busca_largura import BuscaLargura
