@@ -32,7 +32,6 @@ class EstadoProfundidade:
             try:
                 getattr(candidato_baldes, nome_regra)()
             except Exception:
-                # Regra não aplicável nesse estado (ex: encher balde já cheio).
                 continue
 
             filhos.append(EstadoProfundidade(

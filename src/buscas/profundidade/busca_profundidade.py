@@ -13,13 +13,11 @@ class BuscaProfundidade:
 
         estado_raiz = EstadoProfundidade(pai=None, baldes=self.baldes, ordem_reversa=ordem_reversa, logs=logs)
 
-        # Usamos uma lista Python comum como Pilha (LIFO)
         self.abertos = [estado_raiz]
         self.visitados = {self.baldes.tupla()}
 
     def busca_completa(self) -> bool:
         while self.abertos:
-            # LIFO: remove o último elemento inserido (topo da pilha)
             estado_atual = self.abertos.pop()
 
             if self.logs:
@@ -30,7 +28,6 @@ class BuscaProfundidade:
                 self.solucao = estado_atual
                 return True
 
-            # Trava para evitar estouro/loop infinito em caminhos muito profundos
             if estado_atual.nivel >= self.limite_profundidade:
                 self.impasses += 1
                 if self.logs:
@@ -45,8 +42,6 @@ class BuscaProfundidade:
                     print(Fore.RED + f'Estado {estado_atual.baldes.tupla()} é um impasse (sem filhos válidos).' + Fore.RESET)
                 continue
 
-            # Invertemos a ordem dos filhos ao empilhar para que o primeiro filho gerado
-            # fique no topo e seja explorado antes dos seus irmãos.
             novos_nos = 0
             for filho in reversed(filhos):
                 chave = filho.baldes.tupla()

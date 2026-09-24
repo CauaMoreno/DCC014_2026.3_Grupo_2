@@ -3,3 +3,4 @@ src/__init__.pyc
 .gitignore
 src/buscas/__init__.pyc
 src/buscas/backtracking/__init__.pyc
+.devcontainer/
